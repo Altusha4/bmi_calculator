@@ -13,7 +13,21 @@ app.get("/", function(req, res) {
 app.post("/calculate", function(req, res) {
     const weight = parseFloat(req.body.weight);
     const height = parseFloat(req.body.height);
+
+    if (!weight || !height || weight <= 0 || height <= 0) {
+        return res.send(`
+            <html>
+            <head><title>Error</title></head>
+            <body>
+                <h1>Invalid input!</h1>
+                <p>Weight and height must be positive numbers.</p>
+                <a href="/">Back</a>
+            </body>
+            </html>
+        `);
+    }
     const bmi = weight / (height * height);
+
     let category = "";
     let categoryClass = "";
 
@@ -48,6 +62,7 @@ app.post("/calculate", function(req, res) {
         </html>
     `);
 });
+
 
 app.listen(3000, function() {
     console.log("Server starting: http://localhost:3000");
