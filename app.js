@@ -14,7 +14,21 @@ app.post("/calculate", function(req, res) {
     const weight = parseFloat(req.body.weight);
     const height = parseFloat(req.body.height);
     const bmi = weight / (height * height);
-    res.send("Your BMI is: " + bmi.toFixed(2));
+    res.send(`
+    <html>
+    <head>
+        <title>BMI Result</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Your BMI Result</h1>
+            <p>Your BMI is: <strong>${bmi.toFixed(2)}</strong></p>
+            <a href="/" class="btn">Back</a>
+        </div>
+    </body>
+    </html>
+`);
 });
 
 app.listen(3000, function() {
