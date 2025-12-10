@@ -2,8 +2,8 @@ const express = require("express");
 
 const app = express();
 
-app.get("/", function(request, response) {
-    response.send("Server is working!");
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + "/views/index.html");
 });
 
 app.listen(3000, function() {
