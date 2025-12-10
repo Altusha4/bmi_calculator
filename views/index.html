@@ -11,11 +11,11 @@
 <form action="/calculate" method="POST">
     <p>
         <label>Weight (kg):</label><br>
-        <input type = "number" name = "weight" step = "0.01" required>
+        <input type = "number" name = "weight" step = "0.01" required min="0.01">
     </p>
     <p>
         <label>Height (meters):</label><br>
-        <input type = "number" name = "height" step = "0.01" required>
+        <input type = "number" name = "height" step = "0.01" required min="0.01">
     </p>
     <button type = "submit">Calculate BMI</button>
 </form>
