@@ -15,16 +15,22 @@ app.post("/calculate", function(req, res) {
     const height = parseFloat(req.body.height);
     const bmi = weight / (height * height);
     let category = "";
+    let categoryClass = "";
 
     if (bmi < 18.5) {
         category = "Underweight";
+        categoryClass = "underweight";
     } else if (bmi < 24.9) {
         category = "Normal";
+        categoryClass = "normal";
     } else if (bmi < 29.9) {
         category = "Overweight";
+        categoryClass = "overweight";
     } else {
         category = "Obese";
+        categoryClass = "obese";
     }
+
     res.send(`
         <html>
         <head>
@@ -35,7 +41,7 @@ app.post("/calculate", function(req, res) {
             <div class="container">
                 <h1>Your BMI Result</h1>
                 <p>Your BMI is: <strong>${bmi.toFixed(2)}</strong></p>
-                <p>Category: <strong>${category}</strong></p>
+                <p>Category: <strong class="${categoryClass}">${category}</strong></p>
                 <a href="/" class="btn">Back</a>
             </div>
         </body>
