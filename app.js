@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const fs = require("fs");
 
 const app = express();
 
@@ -16,16 +17,12 @@ app.post("/calculate", function(req, res) {
 
     if (!weight || !height || weight <= 0 || height <= 0) {
         return res.send(`
-            <html>
-            <head><title>Error</title></head>
-            <body>
-                <h1>Invalid input!</h1>
-                <p>Weight and height must be positive numbers.</p>
-                <a href="/">Back</a>
-            </body>
-            </html>
+            <h1>Invalid input!</h1>
+            <p>Weight and height must be positive numbers.</p>
+            <a href="/">Back</a>
         `);
     }
+
     const bmi = weight / (height * height);
 
     let category = "";
@@ -45,24 +42,17 @@ app.post("/calculate", function(req, res) {
         categoryClass = "obese";
     }
 
-    res.send(`
-        <html>
-        <head>
-            <title>BMI Result</title>
-            <link rel="stylesheet" href="/style.css">
-        </head>
-        <body>
-            <div class="container">
-                <h1>Your BMI Result</h1>
-                <p>Your BMI is: <strong>${bmi.toFixed(2)}</strong></p>
-                <p>Category: <strong class="${categoryClass}">${category}</strong></p>
-                <a href="/" class="btn">Back</a>
-            </div>
-        </body>
-        </html>
-    `);
-});
+    fs.readFile(__dirname + "/views/result.html", "utf8", (err, data) => {
+        if (err) return res.send("Error loading result page.");
 
+        let html = data
+            .replace("{{bmi}}", bmi.toFixed(2))
+            .replace("{{category}}", category)
+            .replace(/{{class}}/g, categoryClass);
+
+        res.send(html);
+    });
+});
 
 app.listen(3000, function() {
     console.log("Server starting: http://localhost:3000");
