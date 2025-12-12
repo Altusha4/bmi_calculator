@@ -1,21 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>BMI Result</title>
     <link rel="stylesheet" href="/style.css">
 </head>
-
 <body>
+
 <div class="container">
     <h1>Your BMI Result</h1>
 
     <div class="result-box">
-        <p>Your BMI is: <strong class="{{class}}">{{bmi}}</strong></p>
-        <p>Category: <strong class="{{class}}">{{category}}</strong></p>
+        <p>
+            Your BMI is:
+            <strong class="{{class}}">{{bmi}}</strong>
+        </p>
+        <p>
+            Category:
+            <strong class="{{class}}">{{category}}</strong>
+        </p>
+        <p>
+            Gender:
+            <strong>{{gender}}</strong>
+        </p>
+        <p>
+            Age:
+            <strong>{{age}}</strong>
+        </p>
+    </div>
+
+    <div class="bmi-gauge">
+        <div class="gauge">
+            <div class="needle" style="transform: rotate({{angle}}deg);"></div>
+        </div>
+        <p class="bmi-text">
+            BMI = <strong>{{bmi}}</strong>
+        </p>
     </div>
 
     <a href="/" class="btn">Back</a>
 </div>
+
 </body>
 </html>

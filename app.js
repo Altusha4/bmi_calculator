@@ -7,18 +7,20 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/", function(req, res) {
+app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 });
 
-app.post("/calculate", function(req, res) {
+app.post("/calculate", (req, res) => {
     const weight = parseFloat(req.body.weight);
     const height = parseFloat(req.body.height);
+    const gender = req.body.gender;
+    const age = parseInt(req.body.age);
 
-    if (!weight || !height || weight <= 0 || height <= 0) {
+    if (!gender || !age || age < 5 || age > 120 || weight < 20 || height < 0.5) {
         return res.send(`
-            <h1>Invalid input!</h1>
-            <p>Weight and height must be positive numbers.</p>
+            <h1>Invalid input</h1>
+            <p>Please enter valid gender, age, weight, and height.</p>
             <a href="/">Back</a>
         `);
     }
@@ -42,18 +44,25 @@ app.post("/calculate", function(req, res) {
         categoryClass = "obese";
     }
 
+    let angle = Math.min(Math.max((bmi - 15) * 6, 0), 180);
+
     fs.readFile(__dirname + "/views/result.html", "utf8", (err, data) => {
-        if (err) return res.send("Error loading result page.");
+        if (err) {
+            return res.send("Error loading result page.");
+        }
 
         let html = data
-            .replace("{{bmi}}", bmi.toFixed(2))
+            .replace("{{bmi}}", bmi.toFixed(1))
             .replace("{{category}}", category)
-            .replace(/{{class}}/g, categoryClass);
+            .replace(/{{class}}/g, categoryClass)
+            .replace("{{gender}}", gender)
+            .replace("{{age}}", age)
+            .replace("{{angle}}", angle);
 
         res.send(html);
     });
 });
 
-app.listen(3000, function() {
-    console.log("Server starting: http://localhost:3000");
+app.listen(3000, () => {
+    console.log("Server running at http://localhost:3000");
 });
