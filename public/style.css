@@ -1,11 +1,13 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #e1bee7);
     min-height: 100vh;
+    background: linear-gradient(120deg, #6a85f1, #b8c6ff);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,17 +15,22 @@ body {
 
 .container {
     background: white;
-    padding: 30px;
     width: 100%;
     max-width: 420px;
-    border-radius: 18px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    margin-bottom: 25px;
+    color: #222;
+}
+
+label {
+    font-size: 14px;
+    color: #555;
 }
 
 input,
@@ -31,36 +38,31 @@ select {
     width: 100%;
     padding: 12px;
     margin-top: 6px;
-    margin-bottom: 14px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
     font-size: 15px;
-    background: white;
 }
 
 button,
 .btn {
     width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    padding: 14px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
     color: white;
     font-size: 15px;
     font-weight: bold;
     border: none;
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-align: center;
-    transition: transform 0.15s ease;
 }
 
 button:hover,
 .btn:hover {
-    transform: scale(1.03);
-}
-
-.btn {
-    display: block;
-    margin: 25px auto 0;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 .result-box {
@@ -68,29 +70,33 @@ button:hover,
     margin-bottom: 20px;
 }
 
+.result-box p {
+    margin: 8px 0;
+}
+
 .underweight {
-    color: blue;
+    color: #2196f3;
     font-weight: bold;
 }
 
 .normal {
-    color: green;
+    color: #4caf50;
     font-weight: bold;
 }
 
 .overweight {
-    color: orange;
+    color: #ff9800;
     font-weight: bold;
 }
 
 .obese {
-    color: red;
+    color: #f44336;
     font-weight: bold;
 }
 
 .bmi-gauge {
     text-align: center;
-    margin: 20px 0;
+    margin: 25px 0;
 }
 
 .gauge {
@@ -122,6 +128,12 @@ button:hover,
 }
 
 .bmi-text {
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 18px;
+    font-weight: bold;
+}
+
+.btn {
+    display: block;
+    margin-top: 25px;
 }

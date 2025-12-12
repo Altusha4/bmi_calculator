@@ -52,7 +52,7 @@ app.post("/calculate", (req, res) => {
         }
 
         let html = data
-            .replace("{{bmi}}", bmi.toFixed(1))
+            .replace(/{{bmi}}/g, bmi.toFixed(1))
             .replace("{{category}}", category)
             .replace(/{{class}}/g, categoryClass)
             .replace("{{gender}}", gender)
