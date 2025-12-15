@@ -22,19 +22,24 @@ Built using **Node.js**, **Express**, **HTML**, and **CSS** as part of the **WEB
 - **Beautiful, modern UI with color-coded categories**
 - **Separate result page rendered with template placeholders**
 - **Clean and understandable project structure**
+- **Informational disclaimer: *BMI is not a medical diagnosis**
 
 ---
 
 ## Project Structure
 ```
 bmi-calculator/
-├── app.js          # Express server, routes, and BMI logic
-├── package.json    # Project dependencies and configuration
-├── public/         # Static files
-│   └── style.css   # Global minimalist styles
-└── views/          # HTML templates
-    ├── index.html  # Main page with the input form
-    └── result.html # BMI result page (template)
+├── app.js              # Express server, routes, and BMI logic
+├── package.json        # Project dependencies and configuration
+├── package-lock.json    # Dependency lock file
+├── README.md            # Project documentation
+│
+├── public/             # Static files
+│   └── style.css       # Global minimalist styles
+│   └── animations.css  # Simple UI animations
+└── views/              # HTML templates
+    ├── index.html      # Main page with the input form
+    └── result.html     # BMI result page template
 ```
 
 ---
