@@ -17,12 +17,18 @@ app.post("/calculate", (req, res) => {
     const gender = req.body.gender;
     const age = parseInt(req.body.age);
 
-    if (!gender || !age || age < 5 || age > 120 || weight < 20 || height < 0.5) {
+    if (!gender || !age || age < 5 || age > 120 ||
+        !weight || weight < 20 ||
+        !height || height < 0.5 || height > 3.5
+    ) {
         return res.send(`
-            <h1>Invalid input</h1>
-            <p>Please enter valid gender, age, weight, and height.</p>
-            <a href="/">Back</a>
-        `);
+        <h1>Invalid input</h1>
+        <p>
+            Please enter realistic values.<br>
+            Height must be between 0.5 and 2.5 meters.
+        </p>
+        <a href="/">Back</a>
+    `);
     }
 
     const bmi = weight / (height * height);
