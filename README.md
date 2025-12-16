@@ -36,7 +36,7 @@ bmi-calculator/
 │
 ├── public/             # Static files
 │   └── style.css       # Global minimalist styles
-│   └── animations.css  # Simple UI animations
+│   └── animations.js  # Simple UI animations
 └── views/              # HTML templates
     ├── index.html      # Main page with the input form
     └── result.html     # BMI result page template
